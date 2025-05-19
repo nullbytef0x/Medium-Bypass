@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Medium Bypass</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 300px;
+      margin: 0;
+      /* For the "rounded outside corners" effect, make body background transparent 
+         or match the expected browser popup background.
+         The actual popup window is controlled by the browser.
+         We will apply rounding to the main container. */
+      background-color: transparent; 
+      color: #1c1e21;
+      box-sizing: border-box;
+      /* Padding on body can create an outer square edge if body has a color.
+         If body is transparent, padding is fine. Or, remove padding and let container manage it. */
+      padding: 0; /* Let container handle all padding and rounding */
+    }
+    .container {
+        background-color: #ffffff;
+        padding: 22px; /* Slightly adjusted padding */
+        border-radius: 16px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.12); 
+        width: 100%; 
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; /* Stretch children to fill width, like button and toggle label */
+    }
+    .header {
+        display: flex;
+        align-items: center; /* Vertically center icon and text */
+        justify-content: center; /* Horizontally center the group */
+        margin-bottom: 22px; /* Adjusted space */
+        width: 100%;
+    }
+    .header img {
+        width: 32px; 
+        height: 32px;
+        margin-right: 10px;
+    }
+    h3 { 
+      margin: 0; /* Remove all margins, rely on flex alignment */
+      color: #1c1e21;
+      font-size: 1.15em; 
+      font-weight: 600;
+      line-height: 1.2; /* Ensure consistent line height for centering */
+    }
+    .toggle-switch-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px; /* Adjusted space */
+      font-size: 1em; 
+      padding: 12px 15px; 
+      background-color: #f0f2f5; 
+      border-radius: 10px; 
+    }
+    .toggle-switch-label span:first-child { /* Target the text "Enable Auto-Redirect" */
+        text-align: left;
+        flex-grow: 1; /* Allow text to take available space if needed */
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px; /* Slightly larger switch */
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccd0d5; /* Grey for off state */
+      transition: .4s;
+      border-radius: 24px; /* Fully rounded */
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px; /* Larger knob */
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    input:checked + .slider {
+      background-color: #1877f2; /* Facebook blue for on state */
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px 15px; /* Good padding */
+      cursor: pointer;
+      border: none;
+      background-color: #1877f2; /* Facebook blue */
+      color: white;
+      border-radius: 10px; /* More rounded corners */
+      font-size: 1em; /* Slightly larger font */
+      font-weight: 600; /* Bolder button text */
+      transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    button:hover {
+      background-color: #166fe5; /* Slightly darker blue on hover */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    button:active {
+      background-color: #145cb0; /* Even darker for active state */
+    }
+    .footer-attribution {
+      margin-top: 20px;
+      font-size: 0.9em; /* Increased font size */
+      color: #555;
+      text-align: center;
+    }
+    .footer-attribution .heart {
+      color: #e74c3c; /* Red heart */
+      font-size: 1.1em; /* Heart can remain slightly larger relative to new base text size */
+    }
+    .footer-attribution a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .footer-attribution a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="icons/icon48.png" alt="Extension Icon">
+      <h3>Medium Payroll Bypass</h3>
+    </div>
+    <label class="toggle-switch-label">
+      <span>Enable Auto-Redirect</span>
+      <label class="switch">
+        <input type="checkbox" id="autoRedirectToggle">
+        <span class="slider"></span>
+      </label>
+    </label>
+    <button id="manualBypassButton">Bypass Current Page</button>
+    <div class="footer-attribution">
+      Made with <span class="heart">♥</span> by <a href="https://github.com/Nullbytefox" target="_blank">Nullbytefox</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
